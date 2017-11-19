@@ -1,0 +1,110 @@
+1     在向量中添加元素append()
+x=c(2,7,8,3,5)
+append(x,10:15,after=4)
+#after=表示在向量的第几个元素后添加指定的值
+
+
+
+
+2     查找与检索
+2.1   which()可以查找向量中的元素的位置
+x=c(5:20)
+which(VARI == 7)
+# :3  索引到位置值为3，which具体用法还有：
+which(VARI == c(7,10))        等于7和10的位置
+which(VARI != c(7,10))        不等于7和10的位置
+which.max(DATA$VARI)
+which.min(DATA$VARI)
+
+
+2.2   subset()可以检索向量中满足条件的元素
+subset(x, x > 10 & x < 15)
+result:11 12 13 14
+
+
+2.3   match() 判断向量中元素是否满足要求
+match(x, c(5, 11))
+result:1 NA NA NA NA NA  2 NA NA NA NA NA NA NA NA NA
+
+
+2.4       %in%匹配符，判断前一向量的数据是否包含在后一向量中，返回为F或T
+result:c(10, 15) %in% x  
+TRUE TRUE
+x %in% c(10, 15)
+result:FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE
+
+
+2.5       最大最小值
+max()
+min()
+match(NUM,DATA$VARI)
+#match返回的都是数据在向量中的位置值
+
+pmin()
+pmax()
+#pmin()与pmax()返回的是两个向量中对应位置的最大或最小值，例如：
+pmin(1:5,5:1)
+#返回为12321
+
+DATA$VARI=pmax(DATA$VARI，0)
+#这里将DATA$VARI中的每个值与0比较，小于0的值就被去除变成0
+
+
+
+
+3     等差序列与重复序列
+seq(1, -9, length.out = 5)  
+# 给出首项和尾项数据以及长度，算出序列
+
+seq(1, -9, by = -2)  
+# 给出首项和尾项数据以及等差，算出序列
+
+seq(1, by = 2, length.out = 10) 
+#给出首项和等差以及序列长度数据，算出序列
+
+rep(1:3, times=2)  
+# : 1 2 3 1 2 3
+
+rep(1:3, each = 2)  
+# : 1 1 2 2 3 3
+
+rep(1:3, c(2, 1, 2))  
+# : 1 1 2 3 3 1重复两次，2重复1次，3重复两次
+ 
+rep(1:3, each = 2, times = 3)  #112233整个序列重复3次
+
+
+
+4.    向量比较
+比较运算符有==  !=  <  >  <=  >=能对两向量之间的元素进行比较，也可以将向量中所有元素进行比较，返回
+两个元素间的比较结果的逻辑向量
+X=c(3,pi,4)
+Y=c(4,3,2)
+X>Y
+#FALSE TRUE TRUE
+any(X==pi)
+#TRUE.若X向量中元素至少一个等于pi，则返回TRUE
+all(X==0)
+#FALSE.若X向量中元素全部等于0，则返回TRUE
+
+
+
+
+5.    因子型变量
+5.1   设置标签
+DATA$VARI=factor(DATA$VARI,levels=c("B","M"),labels=c("Benign","Malignant"))  
+#因子变量，指定levels=c()来创建一个顺序，如果需要指定顺序则加上Order=T，即为有序因子变量
+
+5.2   提取因子水平
+levels(VARI_F)
+#将该因子的各个因子水平提取，结果是一个向量
+
+
+
+
+
+6.    变量的正态性变换
+library(car)
+summary(powerTransform(DATA$VARI))
+#结果中Est.Power表示需要变换的幂次，同时下面对lambda等于1及0时进行了检验，如pvalue不够小则不用进行变换
+
