@@ -1,0 +1,96 @@
+1.列表不能直接用来做计算
+2.索引从0开始，指定值需要对实际值减1。list[0:3]从0下标开始直到第三个元素。
+3.索引负号表示从最后算的第几个元素，-3就代表倒数第三个元素。
+
+
+
+1.      修改添加删除弹出列表
+1.1     append()添加元素
+LIST=["aaa","bbb","ccc"]
+LIST.append("ddd")
+#LIST不能像R一样用LIST=LIST.append("ddd")，只有单个元素可以，例如:
+age=30
+age=str(age)
+数值型的值就转化为字符串的值
+
+
+1.2     insert()插入元素
+LIST=["aaa","bbb","ccc"]
+LIST.insert(1,"ddd")
+#将"ddd"作为索引位置1插入：
+['aaa', 'ddd', 'bbb', 'ccc']
+
+
+1.3     del删除指定位置元素
+LIST=["aaa","bbb","ccc"]
+del LIST[1]
+#del 删除指定索引位置的元素,结果为：LIST=["aaa","ccc"]
+
+
+1.4     pop()弹出元素
+LIST=["aaa","bbb","ccc"]
+LIST_pop=LIST.pop(1)
+#pop()函数生成了一个列表一个字符串，参数为索引值。列表变为["aaa","ccc"]，LIST_pop为"bbb"。
+pop()默认弹出最后一个元素。
+
+
+1.5     remove()删除指定值的元素
+LIST=["aaa","bbb","ccc"]
+LIST.remove("ccc")
+#remove只会删除检索到的第一个指定值，如果要删除所有值，使用循环。
+
+
+1.6     列表排序
+LIST.sort()
+sorted(LIST)
+#LIST.sort()实质改变列表顺序，sorted(LIST)只是临时显示列表顺序变化，实际没变
+
+LIST.reverse()
+#将列表顺序反转，LIST=[3,4,5,6,7]。反转后变为[7,6,5,4,3]
+
+
+1.7     列表长度
+len(LIST)
+
+
+1.8     复制列表
+LIST1=LIST[:]
+#必须用全索引的方式复制列表，如果用LIST1=LIST，则当LIST改变时，LIST1也会改变
+
+
+1.9     列表推导式
+x1=[x for x in range(10) if x%2==0]
+# x1 result:[0, 2, 4, 6, 8]如果x能整除2则返回x，x1为一个列表
+
+x1={x:x*x for x in range(5)}
+# x1 result:{0: 0, 1: 1, 2: 4, 3: 9, 4: 16} 同样可以对字典使用，赋值键值对。也可以对元组执行。
+
+
+
+2.      元组tupple
+元组与列表的区别：用小括号表示，元组被赋值后不可修改
+
+
+
+3.1     字典dict
+字典用大括号表示
+grades={"aaa":80,"bbb":90}
+grade1=grades["aaa"]
+grade1
+# result:80。这里的"aaa","bbb"代表键，80,90为对应的键值。
+
+3.2     字典的键，键值，键值对
+grades.keys()
+#返回对应的键,返回的键是没有顺序的
+
+grades.value()
+#返回对应的键值
+
+grades.items()
+#返回键值对
+
+grade2=grades["ccc"]
+# result:KeyError
+
+grade2=grades.get("ccc",1)
+# result:1 这里查找键"ccc",未找到返回1，找到则返回键值。
